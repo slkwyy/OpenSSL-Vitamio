@@ -549,14 +549,13 @@ local_src_files := \
  crypto/x509v3/v3err.c
 
 local_c_includes := \
- external/openssl \
- external/openssl/crypto \
- external/openssl/crypto/asn1 \
- external/openssl/crypto/evp \
- external/openssl/crypto/modes \
- external/openssl/include \
- external/openssl/include/openssl \
- external/zlib
+ $(LOCAL_PATH)/include/ \
+ $(LOCAL_PATH)/crypto \
+ $(LOCAL_PATH)/crypto/asn1 \
+ $(LOCAL_PATH)/crypto/evp \
+ $(LOCAL_PATH)/crypto/modes \
+ $(LOCAL_PATH)/include/openssl \
+ $(LOCAL_PATH)/zlib
 
 local_c_flags := -DNO_WINDOWS_BRAINDEATH
 
@@ -639,43 +638,43 @@ include $(BUILD_SHARED_LIBRARY)
 
 #######################################
 # host shared library
-include $(CLEAR_VARS)
-include $(LOCAL_PATH)/android-config.mk
-LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
-LOCAL_SRC_FILES += $(local_src_files)
-ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
-  LOCAL_SRC_FILES += $(x86_src_files)
-  LOCAL_SRC_FILES := $(filter-out $(x86_exclude_files),$(LOCAL_SRC_FILES))
-  LOCAL_CFLAGS += $(x86_cflags)
-else
-  LOCAL_SRC_FILES += $(other_arch_src_files)
-endif
-LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
-LOCAL_C_INCLUDES += $(local_c_includes)
-LOCAL_LDLIBS += -ldl
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE:= libcrypto
-LOCAL_ADDITIONAL_DEPENDENCIES := $(local_additional_dependencies)
-include $(BUILD_HOST_SHARED_LIBRARY)
+#include $(CLEAR_VARS)
+#include $(LOCAL_PATH)/android-config.mk
+#LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
+#LOCAL_SRC_FILES += $(local_src_files)
+#ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
+#  LOCAL_SRC_FILES += $(x86_src_files)
+#  LOCAL_SRC_FILES := $(filter-out $(x86_exclude_files),$(LOCAL_SRC_FILES))
+#  LOCAL_CFLAGS += $(x86_cflags)
+#else
+#  LOCAL_SRC_FILES += $(other_arch_src_files)
+#endif
+#LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
+#LOCAL_C_INCLUDES += $(local_c_includes)
+#LOCAL_LDLIBS += -ldl
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE:= libcrypto
+#LOCAL_ADDITIONAL_DEPENDENCIES := $(local_additional_dependencies)
+#include $(BUILD_HOST_SHARED_LIBRARY)
 
 ########################################
 # host static library, which is used by some SDK tools.
-
-include $(CLEAR_VARS)
-include $(LOCAL_PATH)/android-config.mk
-LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
-LOCAL_SRC_FILES += $(local_src_files)
-ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
-  LOCAL_SRC_FILES += $(x86_src_files)
-  LOCAL_SRC_FILES := $(filter-out $(x86_exclude_files),$(LOCAL_SRC_FILES))
-  LOCAL_CFLAGS += $(x86_cflags)
-else
-  LOCAL_SRC_FILES += $(other_arch_src_files)
-endif
-LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
-LOCAL_C_INCLUDES += $(local_c_includes)
-LOCAL_LDLIBS += -ldl
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE:= libcrypto_static
-LOCAL_ADDITIONAL_DEPENDENCIES := $(local_additional_dependencies)
-include $(BUILD_HOST_STATIC_LIBRARY)
+#
+#include $(CLEAR_VARS)
+#include $(LOCAL_PATH)/android-config.mk
+#LOCAL_SHARED_LIBRARIES := $(log_shared_libraries)
+#LOCAL_SRC_FILES += $(local_src_files)
+#ifeq ($(HOST_OS)-$(HOST_ARCH),linux-x86)
+#  LOCAL_SRC_FILES += $(x86_src_files)
+#  LOCAL_SRC_FILES := $(filter-out $(x86_exclude_files),$(LOCAL_SRC_FILES))
+#  LOCAL_CFLAGS += $(x86_cflags)
+#else
+#  LOCAL_SRC_FILES += $(other_arch_src_files)
+#endif
+#LOCAL_CFLAGS += $(local_c_flags) -DPURIFY
+#LOCAL_C_INCLUDES += $(local_c_includes)
+#LOCAL_LDLIBS += -ldl
+#LOCAL_MODULE_TAGS := optional
+#LOCAL_MODULE:= libcrypto_static
+#LOCAL_ADDITIONAL_DEPENDENCIES := $(local_additional_dependencies)
+#include $(BUILD_HOST_STATIC_LIBRARY)
