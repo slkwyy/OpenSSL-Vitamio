@@ -18,7 +18,7 @@ LOCAL_C_INCLUDES := $(target_c_includes)
 LOCAL_CFLAGS := $(target_c_flags)
 LOCAL_ADDITIONAL_DEPENDENCIES := $(local_additional_dependencies)
 include $(LOCAL_PATH)/android-config.mk
-include $(BUILD_EXECUTABLE)
+#include $(BUILD_EXECUTABLE)
 
 #include $(CLEAR_VARS)
 #LOCAL_MODULE:= openssl
