@@ -1,16 +1,12 @@
-OpenSSL-Android
+OpenSSL-Vitamio
 ================
 
 This is a version of the official Android openssl sources, but it is meant to be built as a standalone library to be embedded into app.
 
 To build:
-cd openssl-android
+cd openssl-vitamio
 /path/to/android-ndk-r9c/ndk-build
 
-http://guardianproject.info
-
-I modified this project to build openssl against the latest ndk toolchains (clang3.1, gcc-4.7)
-Dmitry Polishuk (dmitry.polishuk@gmail.com)
 
 Updating the upstream code
 -------------------------
