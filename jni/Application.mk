@@ -1,3 +1,4 @@
 NDK_TOOLCHAIN_VERSION := 4.8
+APP_OPTIM := release
 APP_ABI := all
 
